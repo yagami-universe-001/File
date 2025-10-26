@@ -13,9 +13,8 @@ async def restart_bot(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("Admins only.")
         return
     await update.message.reply_text(
-        "🔄 Bot restart is not available from commands.
-"
-        "You must restart manually on your server or hosting panel."
+        """🔄 Bot restart is not available from commands.
+You must restart manually on your server or hosting panel."""
     )
 
 async def check_queue(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -78,9 +77,7 @@ async def list_premium_users(update: Update, context: ContextTypes.DEFAULT_TYPE)
     premium_users = await db.get_premium_users() if hasattr(db, "get_premium_users") else []
     if premium_users:
         lines = [f"• {u['user_id']}" for u in premium_users if 'user_id' in u]
-        await update.message.reply_text("👑 Premium Users:
-" + "
-".join(lines))
+        await update.message.reply_text("👑 Premium Users:\n" + "\n".join(lines))
     else:
         await update.message.reply_text("👑 No premium users.")
 
